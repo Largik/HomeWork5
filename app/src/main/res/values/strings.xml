@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">HomeWork5</string>
+    <string name="app_name">Reels</string>
+    <string name="reels">Reels</string>
+    <string name="like_count">19.6k</string>
+    <string name="comment_count">110</string>
+    <string name="nick">awsm_jane</string>
+    <string name="follow">Follow</string>
+    <string name="music_text">Try at your own risk</string>
+    <string name="description">Original music</string>
 </resources>
