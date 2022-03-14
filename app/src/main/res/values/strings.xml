@@ -7,4 +7,12 @@
     <string name="follow">Follow</string>
     <string name="music_text">Try at your own risk</string>
     <string name="description">Original music</string>
+    <string name="settings">Settings</string>
+    <string name="archive">Archive</string>
+    <string name="history">Your activity</string>
+    <string name="qr_code">QR code</string>
+    <string name="save">Saved</string>
+    <string name="bullet_list">Close Friends</string>
+    <string name="person_add">Discover People</string>
+    <string name="information">COVID-19 Information Center</string>
 </resources>
