@@ -15,4 +15,6 @@
     <string name="bullet_list">Close Friends</string>
     <string name="person_add">Discover People</string>
     <string name="information">COVID-19 Information Center</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
