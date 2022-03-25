@@ -6,13 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/progress_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/thread"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jsonList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/guideline_begin_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/thread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/btnThread"
+        app:layout_anchorGravity="bottom|center|end"
+        app:layout_constraintTop_toBottomOf="@id/guideline_begin_btn"
+        app:layout_constraintBottom_toTopOf="@id/executor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/executor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/btnExecutor"
+        app:layout_anchorGravity="bottom|center|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/thread"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_begin_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
 </androidx.constraintlayout.widget.ConstraintLayout>
