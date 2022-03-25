@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recycler:RecyclerView
     private var readForJson: Boolean = false
-    private var jsonItems = listOf<JsonItem>()
 
     companion object {
         private const val LIST_KEY = "list_key"
