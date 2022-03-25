@@ -16,6 +16,8 @@ import java.io.IOException
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var recycler:RecyclerView
     private var readForJson: Boolean = false
     private var jsonItems = listOf<JsonItem>()
 
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        recycler = findViewById(R.id.jsonList)
 
         savedInstanceState?.let {
             readForJson = it.getBoolean(LIST_KEY)
@@ -65,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             executor.execute {
                 Thread.sleep(5000)
                 runOnUiThread {
-                    setList(jsonItems)
+                    setList(parseJson())
 //                Log.d("JSON", parseJson().toString())
                     findViewById<ProgressBar>(R.id.progress_indicator).visibility = View.GONE
                     readForJson = true
@@ -78,13 +82,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setList(jsonItems: List<JsonItem>) {
-        val recycler = findViewById<RecyclerView>(R.id.jsonList)
+        recycler.adapter = ItemsAdapter(jsonItems)
 
-        val adapter = ItemsAdapter(jsonItems)
-        recycler.adapter = adapter
-
-        val layoutManager = LinearLayoutManager(this)
-        recycler.layoutManager = layoutManager
+        recycler.layoutManager = LinearLayoutManager(this)
     }
 
     private fun parseJson(): List<JsonItem> {
