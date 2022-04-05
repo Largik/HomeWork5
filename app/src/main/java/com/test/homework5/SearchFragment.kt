@@ -55,6 +55,8 @@ class SearchFragment : Fragment() {
                     }
                 } else{
                     recycler.visibility = View.VISIBLE
+                    view.findViewById<TextView>(R.id.searchResult)?.visibility  = View.GONE
+                    setList(search(it.toString()))
                 }
             }, {
                 Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_SHORT).show()

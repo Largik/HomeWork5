@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HomeWork9</string>
+    <string name="app_name">RXJava</string>
     <string name="reels">Reels</string>
     <string name="like_count">19.6k</string>
     <string name="comment_count">110</string>
@@ -22,5 +22,5 @@
     <string name="password">Пароль</string>
     <string name="btnLogin">Войти</string>
     <string name="searchText">Поиск</string>
-    <string name="searchResult">Данные не найдены</string>
+    <string name="searchResult">Данных нет</string>
 </resources>
