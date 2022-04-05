@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reels</string>
+    <string name="app_name">HomeWork9</string>
     <string name="reels">Reels</string>
     <string name="like_count">19.6k</string>
     <string name="comment_count">110</string>
@@ -17,4 +17,10 @@
     <string name="information">COVID-19 Information Center</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="authText">Авторизация</string>
+    <string name="login">Почта или номер телефона</string>
+    <string name="password">Пароль</string>
+    <string name="btnLogin">Войти</string>
+    <string name="searchText">Поиск</string>
+    <string name="searchResult">Данные не найдены</string>
 </resources>

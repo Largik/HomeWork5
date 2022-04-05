@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/drawable/button.xml" value="0.2525" />
         <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/authorization.xml" value="0.33" />
         <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/fragment_reel.xml" value="0.17958459979736577" />
+        <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/json_item.xml" value="0.1" />
         <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/reels.xml" value="0.26685393258426965" />
+        <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/search.xml" value="0.21926910299003322" />
         <entry key="..\:/AndroidProgram/HomeWork5/app/src/main/res/layout/settings.xml" value="0.2781954887218045" />
       </map>
     </option>
