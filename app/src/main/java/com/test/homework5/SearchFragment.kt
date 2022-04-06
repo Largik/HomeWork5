@@ -1,6 +1,7 @@
 package com.test.homework5
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.google.gson.reflect.TypeToken
 import com.jakewharton.rxbinding4.widget.queryTextChanges
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 
@@ -39,23 +41,22 @@ class SearchFragment : Fragment() {
         readJson()
 
         view.findViewById<SearchView>(R.id.searchRequest).queryTextChanges()
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.computation())
             .debounce(500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if (it.toString().isNotEmpty()) {
-                    if(search(it.toString()).isNotEmpty()){
+                    if (search(it.toString()).isNotEmpty()) {
                         setList(search(it.toString()))
                         recycler.visibility = View.VISIBLE
                         view.findViewById<TextView>(R.id.searchResult).visibility = View.GONE
-                    }
-                    else {
+                    } else {
                         recycler.visibility = View.GONE
-                        view.findViewById<TextView>(R.id.searchResult)?.visibility  = View.VISIBLE
+                        view.findViewById<TextView>(R.id.searchResult)?.visibility = View.VISIBLE
                     }
-                } else{
+                } else {
                     recycler.visibility = View.VISIBLE
-                    view.findViewById<TextView>(R.id.searchResult)?.visibility  = View.GONE
+                    view.findViewById<TextView>(R.id.searchResult)?.visibility = View.GONE
                     setList(search(it.toString()))
                 }
             }, {
@@ -66,9 +67,9 @@ class SearchFragment : Fragment() {
     private fun search(request: String): List<JsonItem> {
         return jsonList.filter {
             request in it.id.toString() ||
-            request in it.userId.toString() ||
-            request in it.title ||
-            request in it.body
+                    request in it.userId.toString() ||
+                    request in it.title ||
+                    request in it.body
         }
     }
 
@@ -96,5 +97,48 @@ class SearchFragment : Fragment() {
         val typeToken = object : TypeToken<List<JsonItem>>() {}.type
 
         return Gson().fromJson(jsonString, typeToken)
+    }
+
+    private fun observableTest() {
+        val zip = Observable.zip(
+            Observable.interval(1000L, TimeUnit.SECONDS)
+                .doOnNext {
+                    Log.d("LogTag", "SubscribeOn thread: " + Thread.currentThread().name)
+                },
+
+            Observable.interval(1500L, TimeUnit.SECONDS)
+                .doOnNext {
+                    Log.d("LogTag", "SubscribeOn thread: " + Thread.currentThread().name)
+                }
+        ) { first, second ->
+            first to second
+        }
+
+        zip.subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.d(
+                    "LogTag",
+                    "" + it + ". ObserveOn thread: " + Thread.currentThread().name
+                )
+            }
+
+        zip.subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.computation())
+            .subscribe {
+                Log.d(
+                    "LogTag",
+                    "" + it + ". ObserveOn thread: " + Thread.currentThread().name
+                )
+            }
+
+        zip.subscribeOn(Schedulers.newThread())
+            .observeOn(Schedulers.io())
+            .subscribe {
+                Log.d (
+                    "LogTag",
+                    "" + it + ". ObserveOn thread: " + Thread.currentThread().name
+                )
+            }
     }
 }
