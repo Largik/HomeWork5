@@ -26,7 +26,8 @@
         app:layout_constraintBottom_toTopOf="@id/guideline_begin_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/json_item"/>
 
     <Button
         android:id="@+id/thread"
@@ -48,10 +49,22 @@
         android:layout_gravity="bottom|center"
         android:text="@string/btnExecutor"
         app:layout_anchorGravity="bottom|center|end"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/intent_service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/thread"/>
+
+    <Button
+        android:id="@+id/intent_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:text="@string/btnIntentService"
+        app:layout_anchorGravity="bottom|center|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/executor"/>
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -59,5 +72,5 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.83" />
+        app:layout_constraintGuide_percent="0.78" />
 </androidx.constraintlayout.widget.ConstraintLayout>

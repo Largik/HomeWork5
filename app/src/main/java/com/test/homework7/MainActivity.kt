@@ -1,18 +1,16 @@
 package com.test.homework7
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.IOException
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private var readForJson: Boolean = false
 
     companion object {
-        private const val LIST_KEY = "list_key"
+         const val LIST_KEY = "list_key"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             readForJson = false
             findViewById<ProgressBar>(R.id.progress_indicator).visibility = View.VISIBLE
             parseWithExecutor()
+        }
+
+        findViewById<Button>(R.id.intent_service).setOnClickListener {
+            readForJson = false
+            findViewById<ProgressBar>(R.id.progress_indicator).visibility = View.VISIBLE
+            parseWithIntentService()
         }
     }
 
@@ -79,6 +83,23 @@ class MainActivity : AppCompatActivity() {
             Log.d("Loaded", "Already uploaded!")
         }
     }
+
+    private fun parseWithIntentService() {
+        if (!readForJson) {
+            val myIntentService = Intent(this, MyIntentService::class.java)
+            startService(myIntentService)
+            Thread {
+                Thread.sleep(5000)
+                runOnUiThread {
+                    findViewById<ProgressBar>(R.id.progress_indicator).visibility = View.GONE
+                    readForJson = true
+                }
+            }.start()
+        } else {
+            Log.d("Loaded", "Already uploaded!")
+        }
+    }
+
 
     private fun setList(jsonItems: List<JsonItem>) {
         recycler.adapter = ItemsAdapter(jsonItems)
