@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">HomeWork5</string>
+    <string name="app_name">Многопоточность</string>
+    <string name="btnThread">Thread</string>
+    <string name="btnExecutor">Executor</string>
+    <string name="btnIntentService">Intent service</string>
 </resources>
